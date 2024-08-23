@@ -52,7 +52,7 @@ ALTER TABLE servants
 DESCRIBE design.servants;
 
 -- Inserts: DT
-INSERT INTO servants (id, servant_name, yrs_served, cats_id) VALUES (DEFAULT, "Peter", 5, 1);
+INSERT INTO servants (id, servant_name, yrs_served, cats_id) VALUES (DEFAULT, "Hubert", 5, 1);
 INSERT INTO servants (id, servant_name, yrs_served, cats_id) VALUES (DEFAULT, "Michael", 2, 2);
 INSERT INTO servants (id, servant_name, yrs_served, cats_id) VALUES (DEFAULT, "Sven", 10, 3);
 
@@ -107,15 +107,13 @@ ALTER TABLE purchases
 DESCRIBE design.purchases;
 
 -- Purchases: Inserts (Kaufprozesse : Käufer - Produkt)
-INSERT INTO purchases (servants_id, products_id) VALUES (1, 2);
+INSERT INTO purchases (servants_id, products_id) VALUES (1, 1);
 INSERT INTO purchases (servants_id, products_id) VALUES (1, 3);
-INSERT INTO purchases (servants_id, products_id) VALUES (2, 1);
 INSERT INTO purchases (servants_id, products_id) VALUES (2, 2);
 INSERT INTO purchases (servants_id, products_id) VALUES (2, 3);
 INSERT INTO purchases (servants_id, products_id) VALUES (2, 4);
-
--- Neu hinzu
 INSERT INTO purchases (servants_id, products_id) VALUES (3, 4);
+
 
 -- Purchases: Inhalte 
 SELECT * FROM design.purchases;
