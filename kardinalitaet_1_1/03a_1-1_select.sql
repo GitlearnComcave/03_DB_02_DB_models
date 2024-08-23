@@ -29,3 +29,22 @@ ON design.cats.id = design.servants.cats_id
 WHERE servant_name = "Sven"
 ;
 
+-- Inner Join 2a / (Wer dient wem?)
+-- "X ist der Diener von Y"  / Dienstverhältnis
+SELECT
+    CONCAT(servant_name, " ist der Diener von ", cat_name) AS Dienstverhaeltnis
+FROM design.cats INNER JOIN design.servants
+ON design.cats.id = design.servants.cats_id
+-- Filtern mit WHERE
+-- WHERE cat_name = "Grizabella"
+WHERE servant_name = "Sven"
+;
+
+
+-- Inner Join 3 / Dienstzeit
+SELECT
+	servant_name Diener,
+    yrs_served AS Dienstzeit
+FROM design.cats INNER JOIN design.servants
+ON design.cats.id = design.servants.cats_id
+;
