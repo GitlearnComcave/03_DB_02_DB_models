@@ -1,11 +1,11 @@
 -- Vorbereitungen
-USE design;
-DROP TABLE IF EXISTS purchases;
-DROP TABLE IF EXISTS servants;
-DROP TABLE IF EXISTS cats;
 
--- Mastertabelle: unverändert
-CREATE TABLE IF NOT EXISTS cats
+DROP TABLE IF EXISTS design.purchases;
+DROP TABLE IF EXISTS design.servants;
+DROP TABLE IF EXISTS design.cats;
+
+-- Mastertabelle (MT): unverändert
+CREATE TABLE IF NOT EXISTS design.cats
 (
   id INT NOT NULL AUTO_INCREMENT,
   cat_name  VARCHAR(45) NOT NULL,
@@ -16,17 +16,19 @@ CREATE TABLE IF NOT EXISTS cats
 -- Struktur: MT
 DESCRIBE design.cats;
 
--- Inserts: MT (Mastertable)
-INSERT INTO cats (id, cat_name,fur_color) VALUES (DEFAULT, "Grizabella", "white");
-INSERT INTO cats (id, cat_name,fur_color) VALUES (DEFAULT, "Alonzo", "grey");
-INSERT INTO cats (id, cat_name,fur_color) VALUES (DEFAULT, "Mausi", "striped");
+-- Inserts: MT 
+INSERT INTO design.cats (id, cat_name,fur_color) VALUES 
+(DEFAULT, "Grizabella", "white"),
+(DEFAULT, "Alonzo", "grey"),
+(DEFAULT, "Mausi", "striped")
+;
 
 -- Inhalte: MT
 SELECT * FROM design.cats;
 
 
 -- Detailtabelle: Verbindung zur MT über Fremdschlüssel
-CREATE TABLE IF NOT EXISTS servants
+CREATE TABLE IF NOT EXISTS design.servants
 (
   id INT NOT NULL AUTO_INCREMENT,
   servant_name VARCHAR(45) NOT NULL,
@@ -36,22 +38,24 @@ CREATE TABLE IF NOT EXISTS servants
 );
 
 -- Fremdschlüssel: DT
-ALTER TABLE servants
+ALTER TABLE design.servants
   ADD CONSTRAINT FK_cats_TO_servants
     FOREIGN KEY (cats_id)
     REFERENCES cats (id);
 
 -- wichtig bei 1:1  UNIQUE im fk
-ALTER TABLE servants
+ALTER TABLE design.servants
   ADD CONSTRAINT UQ_cats_id UNIQUE (cats_id);
 
 -- Struktur: DT
 DESCRIBE design.servants;
 
 -- Inserts: DT
-INSERT INTO servants (id, servant_name, yrs_served, cats_id) VALUES (DEFAULT, "Peter", 5, 1);
-INSERT INTO servants (id, servant_name, yrs_served, cats_id) VALUES (DEFAULT, "Michael", 2, 2);
-INSERT INTO servants (id, servant_name, yrs_served, cats_id) VALUES (DEFAULT, "Sven", 10, 3);
+INSERT INTO design.servants (id, servant_name, yrs_served, cats_id) VALUES 
+(DEFAULT, "Hubert", 5, 1),
+(DEFAULT, "Michael", 2, 2),
+(DEFAULT, "Sven", 10, 3)
+;
 
 -- Inhalte: DT
 SELECT * FROM design.servants;

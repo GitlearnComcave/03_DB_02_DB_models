@@ -77,7 +77,7 @@ WHERE yrs_served = (SELECT MAX(yrs_served) FROM design.servants)
 -- 3. VIEW / QUERY / MAX() in VIEW gekapselt
 DROP VIEW IF EXISTS design.max_time;
 
-CREATE VIEW design.max_time AS
+CREATE VIEW design.max_time AS boo
 SELECT 
     MAX(yrs_served) AS Test
 FROM design.servants;
